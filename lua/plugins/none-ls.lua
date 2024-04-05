@@ -7,7 +7,7 @@ return {
   "nvimtools/none-ls.nvim",
   opts = function(_, config)
     -- config variable is the default configuration table for the setup function call
-    -- local null_ls = require "null-ls"
+    local null_ls = require "null-ls"
 
     -- Check supported formatters and linters
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
@@ -15,8 +15,30 @@ return {
     config.sources = {
       -- Set a formatter
       -- null_ls.builtins.formatting.stylua,
-      -- null_ls.builtins.formatting.prettier,
+      null_ls.builtins.formatting.prettier.with {
+        extra_args = {
+          "--trailing-comma none",
+          "--arrow-parens avoid",
+          "--single-quote",
+          "--no-semi",
+          "--jsx-single-quote",
+          "--use-tabs",
+          "--bracket-spacing",
+          "--bracket-same-line",
+        },
+      },
     }
     return config -- return final config table
   end,
 }
+
+-- extra_args = {
+--   "--no-semi",
+--   "--single-quote",
+--   "--trailing-comma none",
+--   "--jsx-single-quote",
+--   "--use-tabs",
+--   "--tab-width 4",
+--   "--html-whitespace-sensitivity css",
+--   "--embedded-language-formatting=auto",
+-- },
