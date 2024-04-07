@@ -56,7 +56,7 @@ return {
         --     ["*"] = "win32yank.exe -o --lf",
         --   },
         --   cache_enabled = 1,
-        },
+        -- },
       },
     },
     -- Mappings can be configured through AstroCore as well.
