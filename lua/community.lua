@@ -14,5 +14,4 @@ return {
   { import = "astrocommunity.pack.typescript-deno" },
   { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.completion.copilot-lua-cmp" },
-  -- import/override with your plugins folder
 }

@@ -35,6 +35,7 @@ return {
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = true, -- sets vim.opt.wrap
         showtabline = 0,
+        -- clipboard = "unnamedplus",
 
         -- neovide
         guifont = "JetBrainsMono Nerd Font:h11",
@@ -43,6 +44,19 @@ return {
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
+        -- clipboard Windows - WSL
+        -- clipboard = {
+        --   name = "win32yank-wsl",
+        --   copy = {
+        --     ["+"] = "win32yank.exe -i --crlf",
+        --     ["*"] = "win32yank.exe -i --crlf",
+        --   },
+        --   paste = {
+        --     ["+"] = "win32yank.exe -o --lf",
+        --     ["*"] = "win32yank.exe -o --lf",
+        --   },
+        --   cache_enabled = 1,
+        },
       },
     },
     -- Mappings can be configured through AstroCore as well.
