@@ -25,6 +25,10 @@ return {
           icon = "󰟓",
           color = "#00ADD8",
         },
+        Makefile = {
+          icon = "",
+          color = "#e37933"
+        },
       },
     },
   },
