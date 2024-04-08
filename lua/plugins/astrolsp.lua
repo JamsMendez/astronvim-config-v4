@@ -113,8 +113,10 @@ return {
       -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end, -- or a custom handler function can be passed
       tsserver = function(_, opts)
         opts.on_attach = function(client, _)
-          client.resolved_capabilities.document_formatting = false
-          client.resolved_capabilities.document_range_formatting = false
+          -- client.resolved_capabilities.document_formatting = false
+          -- client.resolved_capabilities.document_range_formatting = false
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
         end
         require("lspconfig").tsserver.setup(opts)
       end,
