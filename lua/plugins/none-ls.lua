@@ -15,7 +15,7 @@ return {
     config.sources = {
       -- Set a formatter
       -- null_ls.builtins.formatting.stylua,
-      null_ls.builtins.formatting.prettier.with {
+      null_ls.builtins.formatting.prettierd.with {
         extra_args = {
           "--trailing-comma none",
           "--arrow-parens avoid",
@@ -25,6 +25,7 @@ return {
           "--use-tabs",
           "--bracket-spacing",
           "--bracket-same-line",
+          "--tab-width 4",
         },
       },
     }
