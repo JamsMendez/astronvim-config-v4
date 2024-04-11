@@ -11,7 +11,7 @@ return {
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.go" },
   { import = "astrocommunity.pack.docker" },
-  { import = "astrocommunity.pack.typescript-deno" },
+  { import = "astrocommunity.pack.typescript-all-in-one" },
   { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.completion.copilot-lua-cmp" },
 }

@@ -14,7 +14,7 @@ return {
     features = {
       autoformat = false, -- enable or disable auto formatting on start
       codelens = true, -- enable/disable codelens refresh on start
-      inlay_hints = true, -- enable/disable inlay hints on start
+      inlay_hints = false, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
     },
     -- customize lsp formatting options
@@ -32,7 +32,6 @@ return {
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         "lua_ls",
-        "tsserver",
       },
       timeout_ms = 1000, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
@@ -73,31 +72,31 @@ return {
       },
       tsserver = {
         root_dir = require("lspconfig.util").root_pattern("package.json", "tsconfig.json"),
-        single_file_support = false,
-        settings = {
-          javascript = {
-            inlayHints = {
-              includeInlayEnumMemberValueHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayVariableTypeHints = true,
-            },
-          },
-          typescript = {
-            inlayHints = {
-              includeInlayEnumMemberValueHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayVariableTypeHints = true,
-            },
-          },
-        },
+        single_file_supported = false,
+        --   settings = {
+        --     javascript = {
+        --       inlayHints = {
+        --         includeInlayEnumMemberValueHints = true,
+        --         includeInlayFunctionLikeReturnTypeHints = true,
+        --         includeInlayFunctionParameterTypeHints = true,
+        --         includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+        --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        --         includeInlayPropertyDeclarationTypeHints = true,
+        --         includeInlayVariableTypeHints = true,
+        --       },
+        --     },
+        --     typescript = {
+        --       inlayHints = {
+        --         includeInlayEnumMemberValueHints = true,
+        --         includeInlayFunctionLikeReturnTypeHints = true,
+        --         includeInlayFunctionParameterTypeHints = true,
+        --         includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+        --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        --         includeInlayPropertyDeclarationTypeHints = true,
+        --         includeInlayVariableTypeHints = true,
+        --       },
+        --     },
+        --   },
       },
       eslint = {
         root_dir = require("lspconfig.util").root_pattern(".eslintrc.json", ".eslintrc.js", ".eslintrc.cjs"),
@@ -111,15 +110,25 @@ return {
       -- the key is the server that is being setup with `lspconfig`
       -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
       -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end, -- or a custom handler function can be passed
-      tsserver = function(_, opts)
-        opts.on_attach = function(client, _)
-          -- client.resolved_capabilities.document_formatting = false
-          -- client.resolved_capabilities.document_range_formatting = false
-          client.server_capabilities.documentFormattingProvider = false
-          client.server_capabilities.documentRangeFormattingProvider = false
-        end
-        require("lspconfig").tsserver.setup(opts)
-      end,
+      -- tsserver = function(_, opts)
+      --   opts.on_attach = function(client, _)
+      --     -- client.server_capabilities.documentFormattingProvider = false
+      --     -- client.server_capabilities.documentRangeFormattingProvider = false
+      --   end
+      --   require("lspconfig").tsserver.setup(opts)
+      -- end,
+      -- denols = function(_, opts)
+      --   opts.on_attach = function()
+      --     local notify = require "notify"
+      --     local clients = vim.lsp.get_clients()
+      --     notify(clients)
+      --     -- for _, client in pairs(clients) do
+      --     --   if client.name == "typescript-tools" then client.stop() end
+      --     --   if client.name == "tsserver" then client.stop() end
+      --     -- end
+      --   end
+      --   require("lspconfig").denols.setup(opts)
+      -- end,
     },
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
@@ -166,9 +175,27 @@ return {
     -- A custom `on_attach` function to be run after the default `on_attach` function
     -- takes two parameters `client` and `bufnr`  (`:h lspconfig-setup`)
     --- COMMENT
-    -- on_attach = function(client, bufnr)
-    -- this would disable semanticTokensProvider for all clients
-    -- client.server_capabilities.semanticTokensProvider = nil
-    -- end,
+    on_attach = function(client, _)
+      if client.name == "typescript-tools" then
+        local clients = vim.lsp.get_clients()
+        for _, c in pairs(clients) do
+          if not c == nil then
+            if c.name == "denols" then
+              client.stop()
+              return
+            end
+          end
+        end
+      end
+
+      if client.name == "denols" then
+        local clients = vim.lsp.get_clients()
+        for _, c in pairs(clients) do
+          if not c == nil then
+            if c.name == "typescript-tools" then c.stop() end
+          end
+        end
+      end
+    end,
   },
 }
