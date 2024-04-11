@@ -1,19 +1,19 @@
 {
-  "setup": {
-    "prefix": "prettierrc",
-    "body": [
-      "{",
-      "  \"trailingComma\": \"none\",",
-      "  \"arrowParens\": \"avoid\",",
-      "  \"singleQuote\": true,",
-      "  \"semi\": false,",
-      "  \"jsxSingleQuote\": true,",
-      "  \"useTabs\": true,",
-      "  \"tabWidth\": 4,",
-      "  \"bracketSpacing\": true,",
-      "  \"bracketSameLine\": true",
-      "}"
-    ],
-    "description": "prettier configuration"
-  }
+	"setup": {
+		"prefix": "prettierrc",
+		"body": [
+			"{",
+			"  \"trailingComma\": \"none\",",
+			"  \"arrowParens\": \"avoid\",",
+			"  \"singleQuote\": true,",
+			"  \"semi\": false,",
+			"  \"jsxSingleQuote\": true,",
+			"  \"useTabs\": true,",
+			"  \"tabWidth\": 4",
+			"  \"bracketSpacing\": true,",
+			"  \"bracketSameLine\": true",
+			"}"
+		],
+		"description": "prettier configuration"
+	}
 }
