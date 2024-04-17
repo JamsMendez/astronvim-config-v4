@@ -117,18 +117,6 @@ return {
       --   end
       --   require("lspconfig").tsserver.setup(opts)
       -- end,
-      -- denols = function(_, opts)
-      --   opts.on_attach = function()
-      --     local notify = require "notify"
-      --     local clients = vim.lsp.get_clients()
-      --     notify(clients)
-      --     -- for _, client in pairs(clients) do
-      --     --   if client.name == "typescript-tools" then client.stop() end
-      --     --   if client.name == "tsserver" then client.stop() end
-      --     -- end
-      --   end
-      --   require("lspconfig").denols.setup(opts)
-      -- end,
     },
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
@@ -175,27 +163,34 @@ return {
     -- A custom `on_attach` function to be run after the default `on_attach` function
     -- takes two parameters `client` and `bufnr`  (`:h lspconfig-setup`)
     --- COMMENT
-    on_attach = function(client, _)
-      if client.name == "typescript-tools" then
-        local clients = vim.lsp.get_clients()
-        for _, c in pairs(clients) do
-          if not c == nil then
-            if c.name == "denols" then
-              client.stop()
-              return
-            end
-          end
-        end
-      end
-
-      if client.name == "denols" then
-        local clients = vim.lsp.get_clients()
-        for _, c in pairs(clients) do
-          if not c == nil then
-            if c.name == "typescript-tools" then c.stop() end
-          end
-        end
-      end
-    end,
+    -- on_attach = function(client, _)
+      -- local notify = require "notify"
+      --
+      -- if client and client.name == "denols" then
+      --   local clients = vim.lsp.get_clients { name = "typescript-tools" }
+      --   if #clients > 0 then
+      --     for _, c in pairs(clients) do
+      --       if c then
+      --         c.stop()
+      --         notify "typescript-tools stopped"
+      --       end
+      --     end
+      --     return
+      --   end
+      -- end
+      --
+      -- if client and client.name == "typescript-tools" then
+      --   local clients = vim.lsp.get_clients { name = "denols" }
+      --   if #clients > 0 then
+      --     for _, c in pairs(clients) do
+      --       if c and c.name == "denols" then
+      --         if client then client.stop() end
+      --         notify "typescript-tools stopped"
+      --       end
+      --     end
+      --     return
+      --   end
+      -- end
+    -- end,
   },
 }
