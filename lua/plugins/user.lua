@@ -129,6 +129,10 @@ return {
     },
   },
   {
+    "folke/tokyonight.nvim",
+    -- opts = {},
+  },
+  {
     "sigmasd/deno-nvim",
     opts = function(_, opts)
       vim.api.nvim_create_autocmd("LspAttach", {
