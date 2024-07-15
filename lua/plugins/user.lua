@@ -130,7 +130,14 @@ return {
   },
   {
     "folke/tokyonight.nvim",
-    -- opts = {},
+    opts = {
+      style = "storm",
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
   },
   {
     "sigmasd/deno-nvim",
