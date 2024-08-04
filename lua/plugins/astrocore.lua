@@ -57,6 +57,8 @@ return {
         --   },
         --   cache_enabled = 1,
         -- },
+        copilot_proxy = "http://localhost:11435",
+        copilot_proxy_strict_ssl = false,
       },
     },
     -- Mappings can be configured through AstroCore as well.
