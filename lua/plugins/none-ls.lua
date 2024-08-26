@@ -30,8 +30,8 @@ return {
       },
       null_ls.builtins.formatting.sql_formatter.with {
         command = "sql-formatter",
-		filetypes = { "sql", "mysql", "postgresql" },
-		args = { "--config", vim.fn.stdpath "config" .. "/sql_formatter/settings.json" },
+        filetypes = { "sql", "mysql", "postgresql" },
+        args = { "--config", vim.fn.stdpath "config" .. "/sql_formatter/settings.json" },
       },
     }
     return config -- return final config table
