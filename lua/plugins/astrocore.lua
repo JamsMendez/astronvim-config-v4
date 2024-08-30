@@ -5,6 +5,34 @@
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
 
+local function is_wsl()
+  local file = io.popen "cat /proc/version 2>/dev/null"
+  if file then
+    local output = file:read "*all"
+    file:close()
+    if output:match "Microsoft" or output:match "WSL" then return true end
+  end
+  return false
+end
+
+
+local clipboard = {}
+
+if is_wsl() then
+  clipboard = {
+    name = "win32yank-wsl",
+    copy = {
+      ["+"] = "win32yank.exe -i --crlf",
+      ["*"] = "win32yank.exe -i --crlf",
+    },
+    paste = {
+      ["+"] = "win32yank.exe -o --lf",
+      ["*"] = "win32yank.exe -o --lf",
+    },
+    cache_enabled = 1,
+  }
+end
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -38,27 +66,16 @@ return {
         clipboard = "unnamedplus",
 
         -- neovide
-        guifont = "JetBrainsMono Nerd Font:h11",
+        guifont = "MonaspiceNe Nerd Font Regular:h11",
       },
       g = { -- vim.g.<key>
+        -- copilot_proxy = "http://localhost:11435",
+        -- copilot_proxy_strict_ssl = false,
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
         -- clipboard Windows - WSL
-        -- clipboard = {
-        --   name = "win32yank-wsl",
-        --   copy = {
-        --     ["+"] = "win32yank.exe -i --crlf",
-        --     ["*"] = "win32yank.exe -i --crlf",
-        --   },
-        --   paste = {
-        --     ["+"] = "win32yank.exe -o --lf",
-        --     ["*"] = "win32yank.exe -o --lf",
-        --   },
-        --   cache_enabled = 1,
-        -- },
-        -- copilot_proxy = "http://localhost:11435",
-        -- copilot_proxy_strict_ssl = false,
+        clipboard = clipboard,
       },
     },
     -- Mappings can be configured through AstroCore as well.
