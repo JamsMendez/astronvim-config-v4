@@ -19,6 +19,7 @@ return {
         "eslint",
         "cssls",
         "yamlls",
+        "rust_analyzer",
         -- add more arguments for adding more language servers
       })
     end,
