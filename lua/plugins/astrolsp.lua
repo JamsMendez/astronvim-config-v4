@@ -100,6 +100,13 @@ return {
       },
       eslint = {
         root_dir = require("lspconfig.util").root_pattern(".eslintrc.json", ".eslintrc.js", ".eslintrc.cjs"),
+        settings = {
+          useFlatConfig = true,
+          workingDirectories = { mode = "auto" },
+          experimental = {
+            useFlatConfig = false,
+          },
+        },
       },
     },
     -- customize how language servers are attached
@@ -164,33 +171,33 @@ return {
     -- takes two parameters `client` and `bufnr`  (`:h lspconfig-setup`)
     --- COMMENT
     -- on_attach = function(client, _)
-      -- local notify = require "notify"
-      --
-      -- if client and client.name == "denols" then
-      --   local clients = vim.lsp.get_clients { name = "typescript-tools" }
-      --   if #clients > 0 then
-      --     for _, c in pairs(clients) do
-      --       if c then
-      --         c.stop()
-      --         notify "typescript-tools stopped"
-      --       end
-      --     end
-      --     return
-      --   end
-      -- end
-      --
-      -- if client and client.name == "typescript-tools" then
-      --   local clients = vim.lsp.get_clients { name = "denols" }
-      --   if #clients > 0 then
-      --     for _, c in pairs(clients) do
-      --       if c and c.name == "denols" then
-      --         if client then client.stop() end
-      --         notify "typescript-tools stopped"
-      --       end
-      --     end
-      --     return
-      --   end
-      -- end
+    -- local notify = require "notify"
+    --
+    -- if client and client.name == "denols" then
+    --   local clients = vim.lsp.get_clients { name = "typescript-tools" }
+    --   if #clients > 0 then
+    --     for _, c in pairs(clients) do
+    --       if c then
+    --         c.stop()
+    --         notify "typescript-tools stopped"
+    --       end
+    --     end
+    --     return
+    --   end
+    -- end
+    --
+    -- if client and client.name == "typescript-tools" then
+    --   local clients = vim.lsp.get_clients { name = "denols" }
+    --   if #clients > 0 then
+    --     for _, c in pairs(clients) do
+    --       if c and c.name == "denols" then
+    --         if client then client.stop() end
+    --         notify "typescript-tools stopped"
+    --       end
+    --     end
+    --     return
+    --   end
+    -- end
     -- end,
   },
 }

@@ -2,11 +2,18 @@
 return {
   "AstroNvim/astrotheme",
   opts = {
-    background = {
-      dark = "None",
-    },
     style = {
       transparent = true,
+      inactive = false,
+      float = false,
+      neotree = false,
+    },
+    palettes = {
+      astrodark = {
+        ui = {
+          statusline = "None",
+        },
+      },
     },
   },
 }
