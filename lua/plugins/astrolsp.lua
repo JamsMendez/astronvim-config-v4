@@ -99,7 +99,7 @@ return {
         --   },
       },
       eslint = {
-        root_dir = require("lspconfig.util").root_pattern(".eslintrc.json", ".eslintrc.js", ".eslintrc.cjs"),
+        root_dir = require("lspconfig.util").root_pattern(".eslintrc.json", ".eslintrc.js", ".eslintrc.cjs", "eslint.config.js"),
         settings = {
           useFlatConfig = true,
           workingDirectories = { mode = "auto" },
