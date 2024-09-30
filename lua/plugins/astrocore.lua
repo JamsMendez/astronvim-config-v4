@@ -69,8 +69,8 @@ return {
         guifont = "MonaspiceNe Nerd Font Regular:h11",
       },
       g = { -- vim.g.<key>
-        -- copilot_proxy = "http://localhost:11435",
-        -- copilot_proxy_strict_ssl = false,
+        copilot_proxy = "http://localhost:11435",
+        copilot_proxy_strict_ssl = false,
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file

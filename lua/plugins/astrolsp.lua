@@ -70,36 +70,41 @@ return {
       denols = {
         root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
       },
-      tsserver = {
-        root_dir = require("lspconfig.util").root_pattern("package.json", "tsconfig.json"),
-        single_file_supported = false,
-        --   settings = {
-        --     javascript = {
-        --       inlayHints = {
-        --         includeInlayEnumMemberValueHints = true,
-        --         includeInlayFunctionLikeReturnTypeHints = true,
-        --         includeInlayFunctionParameterTypeHints = true,
-        --         includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-        --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        --         includeInlayPropertyDeclarationTypeHints = true,
-        --         includeInlayVariableTypeHints = true,
-        --       },
-        --     },
-        --     typescript = {
-        --       inlayHints = {
-        --         includeInlayEnumMemberValueHints = true,
-        --         includeInlayFunctionLikeReturnTypeHints = true,
-        --         includeInlayFunctionParameterTypeHints = true,
-        --         includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-        --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        --         includeInlayPropertyDeclarationTypeHints = true,
-        --         includeInlayVariableTypeHints = true,
-        --       },
-        --     },
-        --   },
-      },
+      -- tsserver = {
+      --   root_dir = require("lspconfig.util").root_pattern("package.json", "tsconfig.json"),
+      --   single_file_supported = false,
+      --   settings = {
+      --     javascript = {
+      --       inlayHints = {
+      --         includeInlayEnumMemberValueHints = true,
+      --         includeInlayFunctionLikeReturnTypeHints = true,
+      --         includeInlayFunctionParameterTypeHints = true,
+      --         includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+      --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+      --         includeInlayPropertyDeclarationTypeHints = true,
+      --         includeInlayVariableTypeHints = true,
+      --       },
+      --     },
+      --     typescript = {
+      --       inlayHints = {
+      --         includeInlayEnumMemberValueHints = true,
+      --         includeInlayFunctionLikeReturnTypeHints = true,
+      --         includeInlayFunctionParameterTypeHints = true,
+      --         includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+      --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+      --         includeInlayPropertyDeclarationTypeHints = true,
+      --         includeInlayVariableTypeHints = true,
+      --       },
+      --     },
+      --   },
+      -- },
       eslint = {
-        root_dir = require("lspconfig.util").root_pattern(".eslintrc.json", ".eslintrc.js", ".eslintrc.cjs", "eslint.config.js"),
+        root_dir = require("lspconfig.util").root_pattern(
+          ".eslintrc.json",
+          ".eslintrc.js",
+          ".eslintrc.cjs",
+          "eslint.config.js"
+        ),
         settings = {
           useFlatConfig = true,
           workingDirectories = { mode = "auto" },
